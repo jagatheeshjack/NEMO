@@ -52,14 +52,8 @@ app.post('/login', async (req, res) => {
       if (!user) {
         return res.status(401).json({ error: 'Invalid credentials' });
       }
-  
-      console.log(`Stored hash: ${user.password}`); // Debug statement
-  
-      // Hash the provided password to compare with the stored hash
       const hashedGivenPassword = await bcrypt.hash(password, user.password.substr(0, 29)); // Use the same salt from the stored hash
-      console.log(`Hashed given password: ${hashedGivenPassword}`); // Debug statement
   
-      // Compare the hashed given password with the stored hash
       const passwordMatch = await bcrypt.compare(password, user.password);
   
       if (passwordMatch) {
@@ -86,6 +80,36 @@ app.get('/api/users', async (req, res) => {
     }
   });
   
+app.get('api/userList',async(req,res)=>{
+  try{
+    const client = await pool.connect();
+    const result = await client.query('select * from users');
+    const users = result.rows;
+    client.release();
+    res.json(users)
+  }catch(err){
+    console.log(`'No Date Found..'`)
+  }
+});
+
+
+app.post('/addUser', async (req, res) => {
+  const { firstName, lastName, emailId, phoneNo } = req.body;
+  console.log(`'request'${firstName}${lastName} ${emailId}${phoneNo}`);
+  const hashedDefaultPassword = await bcrypt.hash('Password@123','$2b$10$DKWzbI9Aa4bkKe1b71kKNu' ); // Use the same salt from the stored hash
+
+  try {
+    const result = await pool.query(
+      'INSERT INTO users (first_name, last_name, email, phone_number,username,password,role) VALUES ($1, $2, $3, $4,$5,$6,$7) RETURNING *',
+      [firstName, lastName, emailId, phoneNo,emailId,hashedDefaultPassword,'user']
+    );
+    res.status(201).json(result.rows[0]);
+  } catch (error) {
+    console.error('Error while creating user:', error.message);
+    res.status(500).json({ error: 'Error while creating user: ' + error.message });
+  }
+});
+
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });

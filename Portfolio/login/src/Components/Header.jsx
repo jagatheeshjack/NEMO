@@ -9,7 +9,7 @@ export default function Header() { // Added component name
   const [username, setUsername] = useState('');
   const [role, setRole] = useState('');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [isLogoutOpen, setIsLogoutOpen] = useState(false); 
+  const [isLogoutOpen, setIsLogoutOpen] = useState(true); 
 
   useEffect(() => {
     const storedUsername = localStorage.getItem('username');
