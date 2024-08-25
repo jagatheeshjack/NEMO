@@ -1,0 +1,110 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 100%;
+    background-color: #f0f0f0;
+}
+
+.contain {
+    display: flex;
+    height: 100vh;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    background: #fff;
+}
+
+.image-contain {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+}
+
+.vector-image {
+    width: 60%;
+    height: auto;
+}
+
+.form-contain {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2%;
+    background-color: #f4f4f4;
+}
+
+.logcard {
+    width: 100%;
+}
+
+.card {
+    width: 100%;
+    max-width: 50%;
+    padding: 20px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    color: aliceblue;
+    position: relative;
+    left: 25%;
+}
+
+.card h3 {
+    margin-bottom: 20px;
+    text-align: center;
+    color: aqua;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.form-group button {
+    width: 50%;
+    padding: 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+    display: flex;
+    text-align: justify;
+    justify-content: center;
+}
+
+.form-group button:hover {
+    background-color: #0056b3;
+}
+.err{
+    color: red;
+}
+@media (max-width: 768px) {
+    .image-contain {
+        display: none;
+    }
+    .card {
+        width: 100%;
+        max-width: 80%;
+        padding: 20px;
+        background-color: rgb(255, 255, 255);
+        border-radius: 10px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        color: aliceblue;
+        position: relative;
+        left: 10%;
+    }
+}
