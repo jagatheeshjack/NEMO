@@ -132,7 +132,7 @@ body, html {
     float: right;
     padding: 0;
     margin-right: 1em;
-    width:15%;
+    width:18%;
     padding-top: 0.5%;
 }
 .UserDtl img{
@@ -325,7 +325,9 @@ table td{
     text-align: center;
     position: relative;
 }
-
+.modal button{
+    justify-content: center;
+}
 
 .close-btn {
     position: absolute;
@@ -377,7 +379,14 @@ input.custom-input:focus {
     box-shadow: none;
 }
 
-#adduser.button{
-    background-color: green;
-    border: lightgreen;
+.adduser{
+    position: relative;
+    float: right;
+    border:none;
+    border-radius: 4px;
+    text-align: center;
+    text-justify: inter-word;
+}
+.adduser#text{
+    height: 18px;
 }

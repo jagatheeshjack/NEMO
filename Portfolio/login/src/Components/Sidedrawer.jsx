@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import swal from 'sweetalert';
-import UserTable from '../Admin/UserTable';
+import UserTable, {fetchUsers} from '../Admin/UserTable';
+
 const Sidedrawer = ({ closeModal }) => {
   const [formData, setFormData] = useState({
     firstName: '',
@@ -10,6 +11,7 @@ const Sidedrawer = ({ closeModal }) => {
   });
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
+  const [key, setKey] = useState(0);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -18,7 +20,6 @@ const Sidedrawer = ({ closeModal }) => {
       [name]: value
     });
   };
-
   const addUser = async (e) => {
     e.preventDefault();
     setError('');
@@ -32,10 +33,12 @@ const Sidedrawer = ({ closeModal }) => {
         body: JSON.stringify(formData)
       });
       if (!response.ok) {
-        throw new Error('Response not ok');
+        const errorData = await response.json();
+        alert(errorData.error || 'Something went wrong');
       }
-      const data = await response.json();
-      setMessage('User Created Successfully');
+      // const data = await response.json();
+      else{
+      // setMessage('User Created Successfully');
       setFormData({
         firstName: '',
         lastName: '',
@@ -48,8 +51,8 @@ const Sidedrawer = ({ closeModal }) => {
         icon: "success",
         button: "ok",
       });
-  
-
+      closeModal(); 
+    }
     } catch (error) {
       setError('Error while creating User: ' + error.message);
     }
@@ -59,6 +62,7 @@ const Sidedrawer = ({ closeModal }) => {
     <div className="modal-overlay">
       <div className="modal-content">
         <span className="close-btn" onClick={closeModal}>&times;</span>
+        <h4>User Details</h4>
         <form onSubmit={addUser}>
           <div className='row'>
             <div className='col-4'>
@@ -124,8 +128,11 @@ const Sidedrawer = ({ closeModal }) => {
             </div>
           </div>
           <div className="row">
-            <div className="col-12" id='adduser'>
-              <button type="submit">Save</button>
+            <div className="col-4" id='adduser'>
+            </div>
+            <div className='col-4'>
+            <button type="submit">Save</button>
+
             </div>
           </div>
           <div className="row">

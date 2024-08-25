@@ -26,38 +26,25 @@ const Login = () => {
       const decoded = jwtDecode(response.data.token);
       localStorage.setItem('username', decoded.username);
       localStorage.setItem('role', decoded.role);
-      console.log(`'Roleand user from login:'${decoded.username}${decoded.role}`)
+
+      console.log(`'Role and user from login:'${decoded.username} ${decoded.role}`)
+
       const role = decoded.role;
-    //   if (role === 'Admin') navigate('/Admin');
-    //   else if (role === 'User')
-    //           swal({
-    //             title: "Good job!",
-    //             text: "You clicked the button!",
-    //             icon: "success",
-    //             button: "Aww yiss!",
-    //           })
-    //         navigate('/User');
-    //   else if (role === 'viewer') navigate('/Viewer');
-    // } 
-    if (role === 'Admin') {
-      await swal({
-        title: "Good job!",
-        text: "Logged In..",
-        icon: "success",
-        button: "ok",
-      });
-      navigate('/Admin');
-    } else if (role === 'User') {
-      navigate('/User');
-    } else if (role === 'Viewer') {
-      navigate('/Viewer');
-    } else {
-      navigate('/login');
-    }}catch (err) {
-      console.error('Login error:', err);
-      setError('Invalid credentials. Please try again.');
-    }
-  };
+
+      console.log(role);
+      if (role === 'Admin') {
+        navigate('/Admin');
+      } else if (role === 'User') {
+        navigate('/User');
+      } else if (role === 'Viewer') {
+        navigate('/Viewer');
+      } else {
+        navigate('/login');
+      }}catch (err) {
+        console.error('Login error:', err);
+        setError('Invalid credentials. Please try again.');
+      }
+    };
 
   return (
     <div className="contain">

@@ -1,6 +1,5 @@
 import React from 'react'
 import '../styel.css';
-import Userlist from '../Admin/Userlist';
 import UserTable from '../Admin/UserTable';
 import Test from './Test';
 export default function Sidebar({isOpen,setIsopen}) {
@@ -9,6 +8,7 @@ export default function Sidebar({isOpen,setIsopen}) {
     
     <div className='Pages'>
         <div className={`sidebar${isOpen ? '.open':''}`}>
+            
         </div>
         <div className='Container' id='userTable'>
           <UserTable></UserTable>
